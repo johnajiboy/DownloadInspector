@@ -2,11 +2,10 @@
     "manifest_version": 3,
     "name": "Download Inspector",
     "version": "1.0",
-    "background": {
-      "service_workers": "background.js"
-    },
+    
     "host_permissions": [
-      "http://localhost:5000/"
+        "https://www.filescan.io/api/scan/*",
+        "https://localhost:5000/"
     ],
     "content_scripts": [{
       "matches": ["http://*/*", "https://*/*"],
@@ -20,6 +19,9 @@
       "16": "icon.png",
       "48": "icon.png",
       "128": "icon.png"
+    },
+    "background": {
+      "service_workers": "background.js"
     }
   }
   

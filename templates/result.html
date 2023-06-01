@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Download Inspector</title>
+  </head>
+  <body>
+    <h1>Download Inspector</h1>
+    {% if is_malicious %}
+    <p>The link <strong>{{ link }}</strong> is malicious.</p>
+    {% else %}
+    <p>The link <strong>{{ link }}</strong> is safe.</p>
+    {% endif %}
+  </body>
+</html>

@@ -1,13 +1,12 @@
 import requests
 
 def check_malicious(download_link):
-    scan_url = 'https://www.virustotal.com/api/v3/urls'
+    scan_url = 'https://www.filescan.io/api/scan/url'
     payload = {
         'url': download_link
         }
     headers = {
-        "accept": "application/json",
-        "x-apikey": "73d0d5c20acbbfaf894d712fb9ba17992ffaedf60fe16807a774340990a65bf4",
+        "x-apikey": "fQvcUbP0deGU6dToPidZCBDg8p1t7yXrMNDes49k",
         "content-type": "application/x-www-form-urlencoded"
     }
 
@@ -16,7 +15,17 @@ def check_malicious(download_link):
 
     if response.status_code == 200:
         data = response.json()
-        if 'data' in data and data['data']['attributes']['last_analysis_stats']['malicious'] > 0:
-            return True
+        flow_id = data['flow_id']
+        id = f"https://filescan.io/api/scan/${flow_id}/reportfilter=finalVerdict&sorting=string&other=emulationGraph"
+        headers = {
+        "x-apikey": "fQvcUbP0deGU6dToPidZCBDg8p1t7yXrMNDes49k",
+        "Content-Type": "application/json"
+        }
 
+        response = requests.get(id, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            verdict = data['finalVerdict']['verdict']
+            if verdict == "MALICIOUS":
+                return True
     return False
