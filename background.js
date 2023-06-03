@@ -1,16 +1,24 @@
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.type === 'inspectDownloadLink') {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://localhost:5000/');
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          const response = JSON.parse(xhr.responseText);
-          sendResponse(response.result);
-        }
-      };
-      xhr.send(`link=${encodeURIComponent(request.link)}`);
-      return true;
-    }
-  });
-  
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === 'checkMalicious') {
+    const downloadLink = message.downloadLink;
+
+    fetch('http://localhost:5000/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ downloadLink }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      const isMalicious = data.is_malicious;
+      sendResponse({ isMalicious });
+      })
+      .catch(error => {
+        console.error(error);
+        sendResponse({ error: 'An error occurred while checking the link.' });
+      });
+
+    return true;
+  }
+});
