@@ -8,7 +8,7 @@ def check_malicious(download_link):
         }
     headers = {
         "x-apikey": "cggo-adW_tAzg1KrML9eXpqXy4VVca8hmuxEBAgj",
-        "content-type": "application/x-www-form-urlencoded",
+        "content-type": "application/x-www-form-urlencoded"
     }
 
     response = requests.post(scan_url, data=payload, headers=headers)
