@@ -1,6 +1,11 @@
 # DownloadInspector
 http://www.onyeebube.github.io
+http://johnajiboy.github.io
 For more information about DownloadInspector
+
+AUTHORS
+Okonta Princess <okontaonyeka@gmail.com>
+John Ajiboye <johnajiboye53@gmail.com>
 
 ## Requirements
 Python 3 is required to run the app. Install the project's dependencies with:
