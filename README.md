@@ -1,1 +1,19 @@
-This repository is for an app that inspects download links for malware and gives a report on it it is safe or not
+# DownloadInspector
+http://www.onyeebube.github.io
+For more information about DownloadInspector
+
+## Requirements
+Python 3 is required to run the app. Install the project's dependencies with:
+
+~~~
+pip install -r requirements.txt
+~~~
+
+## Running
+First, set-up the flask app to run on your server by uploading the application files to your web server or you can leave it to run on localhost.
+
+Run the app with:
+
+~~~
+python3 app.py
+~~~
