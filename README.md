@@ -64,6 +64,6 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 
 AUTHORS
-Okonta Princess <okontaonyeka@gmail.com> Github[https://github.com/OnyeEbube]
-John Ajiboye <johnajiboye53@gmail.com> Github[https://github.com/johnajiboy]
+- Okonta Princess <okontaonyeka@gmail.com> Github[https://github.com/OnyeEbube]
+- John Ajiboye <johnajiboye53@gmail.com> Github[https://github.com/johnajiboy]
 
