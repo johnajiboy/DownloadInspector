@@ -3,7 +3,7 @@
   <head>
     <title>Download Inspector</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-    <!--<script src="{{ url_for('static', filename='script.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <style>
       .loading-message {
         display: none;
@@ -16,7 +16,7 @@
   </head>
   <body>
     <h1>Download Inspector</h1>
-    <form action="/" method="POST">
+    <form id="downloadForm" action="/" method="POST">
       <label for="link">Download Link:</label>
       <input type="text" id="link" name="link" required>
       <button type="submit">Check</button>
@@ -24,5 +24,29 @@
     <div id="loadingMessage" class="loading-message">
       Loading, please wait...
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadingMessage = document.getElementById('loadingMessage');
+        const downloadForm = document.getElementById('downloadForm');
+
+        downloadForm.addEventListener('submit', function(event) {
+          event.preventDefault();
+          const form = event.target;
+          const downloadLink = form.link.value;
+
+          showLoadingMessage();
+
+          // Submit the form after a short delay
+          setTimeout(function() {
+            form.submit();
+          }, 1000);
+        });
+
+        function showLoadingMessage() {
+          loadingMessage.style.display = 'block';
+          loadingMessage.textContent = 'Scanning in progress...';
+        }
+      });
+    </script>
   </body>
 </html>

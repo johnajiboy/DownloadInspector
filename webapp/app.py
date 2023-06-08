@@ -1,10 +1,33 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_cors import CORS
-from functions import check_malicious
+from functions import check_malicious, create_users_table, create_user, check_login_info
 
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route('/signup', methods=['POST', 'GET'])
+def signup():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        create_users_table()
+        create_user(name, email, password)
+        return redirect('/login')
+    return render_template('signup.html')
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        if check_login_info(name, password) == True:
+            return redirect('/')
+        else:
+            return redirect('/login')
+    return render_template('login.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
